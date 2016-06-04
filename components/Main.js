@@ -13,10 +13,10 @@
    StatusBar,
    View
  } from 'react-native';
-
+import { debounce } from 'lodash';
 import ListItem from './ListItem';
 import colors from '../utils/colors';
-
+import searchFor from '../utils/fetcher';
 export default class Main extends Component {
    constructor(props){
       super(props);
@@ -25,34 +25,47 @@ export default class Main extends Component {
          rowHasChanged: (r1, r2) => r1 !== r2
       });
 
-      const data = ['Spectacles', 'Giraffe', 'Turtle', 'Shark', 'Lamp',
-      'Beef', 'Drawer', 'Brocoli', 'Raspberries', 'Plate', 'Zebra'];
-
-      this.state = { artists: dataSource.cloneWithRows(data) }
+      this.state = { articles: dataSource }
    }
 
-   renderRow = (text, sId, rId) => {
+   renderRow = (article, sId, rId) => {
+      const imageUrl = article.fields.thumbnail ? article.fields.thumbnail : null;
       return (
          <ListItem index={ rId }
-            text={ text }
-            image={ null } />
+            text={ article.webTitle }
+            image={ imageUrl } />
       );
    };
+
    render() {
-      const { artists } = this.state;
+      const { articles } = this.state;
       return (
          <View style={styles.container}>
 
             <StatusBar barStyle="default" />
 
-            <TextInput style={ styles.searchBox } />
+            <TextInput style={ styles.searchBox }
+               onChangeText={ this.makeQuery }
+            />
 
-            <ListView dataSource={ artists }
-               style={{flex:1, alignSelf: 'stretch'}}
+            <ListView dataSource={ articles }
+               style={ styles.listItem }
                renderRow={ this.renderRow } />
          </View>
       );
    }
+
+   makeQuery = debounce(query => {
+      searchFor(query)
+         .then(articles => {
+             this.setState({
+                articles: this.state.articles.cloneWithRows(articles),
+             });
+         })
+         .catch((error) => {
+            throw error;
+         });
+   }, 400);
  }
 
  const styles = StyleSheet.create({
@@ -62,6 +75,10 @@ export default class Main extends Component {
       justifyContent: 'center',
       alignItems: 'center',
       backgroundColor: colors.white
+   },
+   listItem: {
+      flex:1,
+      alignSelf: 'stretch'
    },
    searchBox: {
      height: 40,

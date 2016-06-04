@@ -17,17 +17,16 @@ import colors from '../utils/colors';
 
 const placeholder = require('../assets/default.png');
 
-const ListItem = ({ text, imageUrl }) => {
-   const image = (
-      imageUrl ? {uri: imageUrl} : placeholder
+const ListItem = ({ text, image }) => {
+   const imageUrl = (
+      image ? {uri: image} : placeholder
    );
-
    return (
       <TouchableOpacity
          underlayColor={ colors.grey }>
 
          <View style={ styles.mediaObject}>
-            <Image source={ image } style={ styles.image }/>
+            <Image source={ imageUrl } style={ styles.image }/>
             <Text style={ styles.text }> { text }</Text>
          </View>
 
