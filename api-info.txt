@@ -1,0 +1,11 @@
+API
+https://content.guardianapis.com/search?api-key=GUARDIAN-API-KEY
+
+Search Entry Point
+http://content.guardianapis.com/search?show-elements=all&show-fields=all&q=Podemos&api-key=GUARDIAN-API-KEY&order-by=newest
+
+Search With Pagination
+http://content.guardianapis.com/search?show-elements=all&show-fields=all&q=Podemos&api-key=GUARDIAN-API-KEY&page=3
+
+Access to an article
+https://content.guardianapis.com/uk-news/2016/mar/04/slough-debates-whether-to-change-its-name?api-key=GUARDIAN-API-KEY&show-fields=all
