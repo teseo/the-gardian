@@ -5,7 +5,7 @@ export default function get(url){
 
 export default function searchFor(query){
   const requestUrl = (
-    `http://content.guardianapis.com/search?show-elements=all&show-fields=all&q=${ query }&type=article&api-key=GUARDIAN-API-KEY&order-by=newest`
+    `http://content.guardianapis.com/search?show-elements=all&show-fields=all&q=${ query }&type=article&api-key=api-key&order-by=newest`
   );
   return get(requestUrl)
     .then( (res) => {

@@ -4,20 +4,13 @@
  * @flow
  */
 
- import React, { Component } from 'react';
- import {
-   AppRegistry,
-   StyleSheet,
-   Text,
-   View
- } from 'react-native';
- 
-import Main from './Main';
+import React, { Component } from 'react';
+import SearchResult from './SearchResult';
 
 export default class Root extends Component {
    render() {
      return (
-       <Main />
+       <SearchResult />
      );
    }
  }

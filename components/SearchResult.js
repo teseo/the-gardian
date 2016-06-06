@@ -13,11 +13,13 @@
    StatusBar,
    View
  } from 'react-native';
+
 import { debounce } from 'lodash';
-import ListItem from './ListItem';
+import ListArticle from './ListArticle';
 import colors from '../utils/colors';
-import searchFor from '../utils/fetcher';
-export default class Main extends Component {
+import searchFor from '../utils/core';
+
+export default class SearchResult extends Component {
    constructor(props){
       super(props);
 
@@ -31,7 +33,7 @@ export default class Main extends Component {
    renderRow = (article, sId, rId) => {
       const imageUrl = article.fields.thumbnail ? article.fields.thumbnail : null;
       return (
-         <ListItem index={ rId }
+         <ListArticle index={ rId }
             text={ article.webTitle }
             image={ imageUrl } />
       );

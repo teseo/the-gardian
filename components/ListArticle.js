@@ -17,7 +17,7 @@ import colors from '../utils/colors';
 
 const placeholder = require('../assets/default.png');
 
-const ListItem = ({ text, image }) => {
+const ListArticle = ({ text, image }) => {
    const imageUrl = (
       image ? {uri: image} : placeholder
    );
@@ -34,7 +34,7 @@ const ListItem = ({ text, image }) => {
    );
 };
 
-export default ListItem;
+export default ListArticle;
 
 const styles = StyleSheet.create({
    mediaObject: {
