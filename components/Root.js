@@ -5,12 +5,38 @@
  */
 
 import React, { Component } from 'react';
-import SearchResult from './SearchResult';
+import {
+  Navigator,
+} from 'react-native';
+import Main from './Main';
+import Article from './Article';
+import NavigationBar from './NavigationBar';
 
 export default class Root extends Component {
+
+   renderScene(route, navigator)
+   {
+     if (route.id === 'MAIN')
+     {
+       return <Main navigator={ navigator }/>;
+     }
+     return <Article
+        id  ={ route.id }
+        title  ={ route.title }
+        body ={ route.body }
+        imageUrl ={ route.imageUrl }
+        date ={ route.date }
+     />;
+
+   };
+
    render() {
      return (
-       <SearchResult />
+       <Navigator sceneStyle={{ flex: 1 }}
+          initialRoute={{ id: 'MAIN', title: 'The GArdian'}}
+          renderScene={ this.renderScene }
+          navigationBar={ NavigationBar }
+        />
      );
    }
  }

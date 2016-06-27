@@ -17,19 +17,20 @@ import colors from '../utils/colors';
 
 const placeholder = require('../assets/default.png');
 
-const ListArticle = ({ text, image }) => {
+const ListArticle = ({ text, image, navState, navigator }) => {
+
    const imageUrl = (
       image ? {uri: image} : placeholder
    );
    return (
       <TouchableOpacity
-         underlayColor={ colors.grey }>
+         underlayColor={ colors.grey }
+         onPress={ () => navigator.push(navState) }>
 
-         <View style={ styles.mediaObject}>
+         <View style={ styles.mediaObject }>
             <Image source={ imageUrl } style={ styles.image }/>
             <Text style={ styles.text }> { text }</Text>
          </View>
-
       </TouchableOpacity>
    );
 };
@@ -43,7 +44,7 @@ const styles = StyleSheet.create({
       flexDirection: 'row',
       marginBottom: 10,
    },
-   text: {flex: 1},
+   text: { flex: 1 },
    image: {
       backgroundColor: colors.grey,
       width: 40,

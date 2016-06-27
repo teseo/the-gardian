@@ -19,7 +19,7 @@ import ListArticle from './ListArticle';
 import colors from '../utils/colors';
 import searchFor from '../utils/core';
 
-export default class SearchResult extends Component {
+export default class Main extends Component {
    constructor(props){
       super(props);
 
@@ -31,18 +31,28 @@ export default class SearchResult extends Component {
    }
 
    renderRow = (article, sId, rId) => {
+      const { navigator } = this.props;
       const imageUrl = article.fields.thumbnail ? article.fields.thumbnail : null;
+      const ARTICLE_STATE = {
+         id: article.id,
+         title: article.fields.headline,
+         body: article.fields.body,
+         imageUrl: imageUrl,
+         date: article.fields.lastModified
+      };
       return (
          <ListArticle index={ rId }
             text={ article.webTitle }
-            image={ imageUrl } />
+            image={ imageUrl }
+            navState={ ARTICLE_STATE }
+            navigator={ navigator } />
       );
    };
 
    render() {
       const { articles } = this.state;
       return (
-         <View style={styles.container}>
+         <View style={ styles.container }>
 
             <StatusBar barStyle="default" />
 
