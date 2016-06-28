@@ -1,5 +1,5 @@
 /**
- * Sample React Native App
+ * Article Component
  * https://github.com/facebook/react-native
  * @flow
  */
@@ -7,31 +7,25 @@
 import React, { Component } from 'react';
 import {
   View,
+  StyleSheet,
   Text,
 } from 'react-native';
 import colors from '../utils/colors';
 
-/*
-id: article.id,
-title: article.fields.headline,
-body: article.fields.body,
-url: article.apiUrl
-
-*/
-const Article = ({ id, title, body, url, imageUrl, date}) => {
+const Article = ({ id, title, headline, body, url, imageUrl, date}) => {
   return (
-    <View style={{
-      backgroundColor: colors.white,
-      borderLeftColor: colors.black,
-      borderLeftWidth: 1,
-      flex: 1,
-      marginTop: 64
-    }}>
-      <Text >
-       {'Image url: ' + imageUrl + '\n\n'}
-       {'title: ' + title + '\n\n'}
-       {'date: ' + date + '\n\n'}
-       {'Body: ' + body+ '\n\n'}
+    <View style={ styles.container }>
+      <Text style={ styles.section }>
+      {'Image url: ' + imageUrl + '\n\n'}
+      </Text>
+      <Text>
+      {'headline: ' + headline + '\n\n'}
+      </Text>
+      <Text>
+      {'date: ' + date + '\n\n'}
+      </Text>
+      <Text>
+      {'Body: ' + body+ '\n\n'}
       </Text>
     </View>
   );
@@ -41,3 +35,17 @@ Article.protoTypes = {
 };
 
 export default Article;
+const styles = StyleSheet.create({
+   container: {
+     backgroundColor: colors.white,
+     flex: 1,
+     flexDirection: 'column',
+     marginTop: 64
+   },
+   section: {},
+   headline: {},
+   trailtext: {},
+   image: {},
+   body: {},
+
+});

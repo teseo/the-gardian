@@ -33,9 +33,11 @@ export default class Main extends Component {
    renderRow = (article, sId, rId) => {
       const { navigator } = this.props;
       const imageUrl = article.fields.thumbnail ? article.fields.thumbnail : null;
+      
       const ARTICLE_STATE = {
          id: article.id,
-         title: article.fields.headline,
+         title: 'The GArdian',
+         headline: article.fields.headline,
          body: article.fields.body,
          imageUrl: imageUrl,
          date: article.fields.lastModified
@@ -54,11 +56,8 @@ export default class Main extends Component {
       return (
          <View style={ styles.container }>
 
-            <StatusBar barStyle="default" />
-
             <TextInput style={ styles.searchBox }
-               onChangeText={ this.makeQuery }
-            />
+               onChangeText={ this.makeQuery } />
 
             <ListView dataSource={ articles }
                style={ styles.listItem }
@@ -95,8 +94,8 @@ export default class Main extends Component {
    searchBox: {
      height: 40,
      borderColor: colors.black,
-     borderWidth: 2,
-     margin: 16,
+     borderWidth: 1,
+     margin: 20,
      paddingLeft: 10,
      fontWeight: '800'
    },

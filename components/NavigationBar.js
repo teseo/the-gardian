@@ -1,5 +1,5 @@
 /**
- * Sample React Native App
+ * Navigator Component
  * https://github.com/facebook/react-native
  * @flow
  */
@@ -8,6 +8,7 @@ import React, { Component } from 'react';
 import {
   StyleSheet,
   Navigator,
+  View,
   Text,
   TouchableOpacity
 } from 'react-native';
@@ -24,9 +25,9 @@ const NavigationBarRouteMapper = {
       <TouchableOpacity
         onPress={ () => navigator.pop() }
         style={ styles.navBarLeftButton }>
-        <Text style={[ styles.navBarText, styles.navBarButtonText ]}>
-          Back
-        </Text>
+          <Text style={[ styles.navBarText, styles.navBarButtonText ]}>
+            { '<Back' }
+          </Text>
       </TouchableOpacity>
     );
   },
@@ -37,9 +38,12 @@ const NavigationBarRouteMapper = {
 
   Title: (route) => {
     return (
-      <Text style={[ styles.navBarText, styles.navBarTitleText ]}>
-        { route.title }
-      </Text>
+      <View style={ styles.titleContainer }>
+        <Text style={[ styles.navBarText, styles.navBarTitleText ]}>
+          { route.title }
+        </Text>
+      </View>
+
     );
   }
 
@@ -51,7 +55,6 @@ const styles = StyleSheet.create({
   },
   navBarText: {
     fontSize: 16,
-    marginVertical: 10,
     color: colors.white
   },
   navBarTitleText: {
@@ -59,7 +62,7 @@ const styles = StyleSheet.create({
     marginVertical: 9
   },
   navBarLeftButton: {
-    paddingRight: 100
+    marginVertical: 9,
   }
 });
 

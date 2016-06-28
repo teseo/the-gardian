@@ -46,7 +46,6 @@ const styles = StyleSheet.create({
    },
    text: { flex: 1 },
    image: {
-      backgroundColor: colors.grey,
       width: 40,
       height: 40,
       marginRight: 16,

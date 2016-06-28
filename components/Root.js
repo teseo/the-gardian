@@ -23,10 +23,10 @@ export default class Root extends Component {
      return <Article
         id  ={ route.id }
         title  ={ route.title }
+        headline  ={ route.headline }
         body ={ route.body }
         imageUrl ={ route.imageUrl }
-        date ={ route.date }
-     />;
+        date ={ route.date }/>;
 
    };
 
