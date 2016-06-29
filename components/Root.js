@@ -20,14 +20,16 @@ export default class Root extends Component {
      {
        return <Main navigator={ navigator }/>;
      }
+     
      return <Article
         id  ={ route.id }
         title  ={ route.title }
+        sectionName ={ route.sectionName }
         headline  ={ route.headline }
-        body ={ route.body }
+        trailtext ={ route.trailText }
         imageUrl ={ route.imageUrl }
-        date ={ route.date }/>;
-
+        date ={ route.date }
+        body ={ route.body }/>;
    };
 
    render() {

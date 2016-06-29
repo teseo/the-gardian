@@ -19,16 +19,13 @@ const placeholder = require('../assets/default.png');
 
 const ListArticle = ({ text, image, navState, navigator }) => {
 
-   const imageUrl = (
-      image ? {uri: image} : placeholder
-   );
    return (
       <TouchableOpacity
          underlayColor={ colors.grey }
          onPress={ () => navigator.push(navState) }>
 
          <View style={ styles.mediaObject }>
-            <Image source={ imageUrl } style={ styles.image }/>
+            <Image source={ image } style={ styles.image }/>
             <Text style={ styles.text }> { text }</Text>
          </View>
       </TouchableOpacity>

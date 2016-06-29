@@ -32,15 +32,19 @@ export default class Main extends Component {
 
    renderRow = (article, sId, rId) => {
       const { navigator } = this.props;
-      const imageUrl = article.fields.thumbnail ? article.fields.thumbnail : null;
-      
+      const placeholder = require('../assets/default.png');
+
+      const imageUrl = article.fields.thumbnail ?  {uri: article.fields.thumbnail} : placeholder;
+console.log(imageUrl);
       const ARTICLE_STATE = {
          id: article.id,
          title: 'The GArdian',
+         sectionName: article.sectionName,
          headline: article.fields.headline,
-         body: article.fields.body,
+         trailText: article.fields.trailText,
          imageUrl: imageUrl,
-         date: article.fields.lastModified
+         date: article.fields.lastModified,
+         body: article.fields.body,
       };
       return (
          <ListArticle index={ rId }
