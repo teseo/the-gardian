@@ -18,6 +18,8 @@ import { debounce } from 'lodash';
 import ListArticle from './ListArticle';
 import colors from '../utils/colors';
 import searchFor from '../utils/core';
+import parseArticleHTMLText from '../utils/articleParser';
+import parseArticleDate from '../utils/articleDateParser';
 
 export default class Main extends Component {
    constructor(props){
@@ -35,16 +37,18 @@ export default class Main extends Component {
       const placeholder = require('../assets/default.png');
 
       const imageUrl = article.fields.thumbnail ?  {uri: article.fields.thumbnail} : placeholder;
+
+      const byline = article.fields.byline ?  article.fields.byline : '';
       const ARTICLE_STATE = {
          id: article.id,
          title: 'The GArdian',
          sectionName: article.sectionName,
          headline: article.fields.headline,
-         trailText: article.fields.trailText,
-         byline: article.fields.byline,
+         trailText: parseArticleHTMLText(article.fields.trailText),
+         byline: byline,
          imageUrl: imageUrl,
-         date: article.fields.lastModified,
-         body: article.fields.body,
+         date: parseArticleDate(article.fields.lastModified),
+         body: parseArticleHTMLText(article.fields.body),
       };
       return (
          <ListArticle index={ rId }
