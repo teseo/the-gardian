@@ -8,8 +8,11 @@
  import {
    StyleSheet,
    Text,
+   Image,
    TextInput,
+   ScrollView,
    ListView,
+   TouchableHighlight,
    StatusBar,
    View
  } from 'react-native';
@@ -20,7 +23,7 @@ import colors from '../utils/colors';
 import searchFor from '../utils/core';
 import parseArticleHTMLText from '../utils/articleParser';
 import parseArticleDate from '../utils/articleDateParser';
-
+import renderIf from '../utils/renderif';
 export default class Main extends Component {
    constructor(props){
       super(props);
@@ -29,9 +32,17 @@ export default class Main extends Component {
          rowHasChanged: (r1, r2) => r1 !== r2
       });
 
-      this.state = { articles: dataSource }
-   }
+      this.state = {
+         articles: dataSource,
+         loaderImage:false,
+         offset: 1
+      }
 
+   }
+   componentDidMount() {
+      this.makeQuery('');
+      console.log(this);
+   }
    renderRow = (article, sId, rId) => {
       const { navigator } = this.props;
       const placeholder = require('../assets/default.png');
@@ -58,33 +69,55 @@ export default class Main extends Component {
             navigator={ navigator } />
       );
    };
-
+   toggleImageLoader () {
+      this.setState({
+      loaderImage:!this.state.loaderImage
+      });
+   }
    render() {
-      const { articles } = this.state;
+
+      const { articles }   = this.state;
+      const loaderImage    = require('../assets/loading.gif');
+      const loadMore       = require('../assets/plus-button.gif');
+
       return (
          <View style={ styles.container }>
 
             <TextInput style={ styles.searchBox }
                onChangeText={ this.makeQuery } />
 
+               {renderIf(this.state.loaderImage)(
+                  <Image source={ loaderImage }
+                  style={ styles.loaderImage }/>
+               )}
+
+
             <ListView dataSource={ articles }
                style={ styles.listItem }
-               renderRow={ this.renderRow } />
+               renderRow={ this.renderRow } ref="listView"/>
+
          </View>
       );
    }
 
    makeQuery = debounce(query => {
-      searchFor(query)
+      this.toggleImageLoader();
+      var offset = this.state.offset;
+      this.refs.listView.scrollTo({y:0});
+      searchFor(query, offset)
          .then(articles => {
              this.setState({
                 articles: this.state.articles.cloneWithRows(articles),
              });
+         }).then(() => {
+            this.toggleImageLoader();
          })
          .catch((error) => {
             throw error;
          });
+
    }, 400);
+
  }
 
  const styles = StyleSheet.create({
@@ -109,5 +142,12 @@ export default class Main extends Component {
    },
    row: {
      color: '#333333',
+   },
+   loaderImage: {
+     marginTop: -20,
+   },
+   button: {
+     width:15,
+     height:15
    },
  });
