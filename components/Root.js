@@ -20,16 +20,8 @@ export default class Root extends Component {
      {
        return <Main navigator={ navigator }/>;
      }
-     
-     return <Article
-        id  ={ route.id }
-        title  ={ route.title }
-        sectionName ={ route.sectionName }
-        headline  ={ route.headline }
-        trailtext ={ route.trailText }
-        imageUrl ={ route.imageUrl }
-        date ={ route.date }
-        body ={ route.body }/>;
+console.log(route);
+     return <Article articleData  = {route}/>;
    };
 
    render() {

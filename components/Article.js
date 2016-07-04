@@ -8,45 +8,49 @@ import React, { Component } from 'react';
 import {
   View,
   StyleSheet,
+  ScrollView,
   Image,
   Text,
 } from 'react-native';
+
+import parseArticleBody from '../utils/articleParser';
+
 import colors from '../utils/colors';
 import Dimensions from 'Dimensions';
 const height = Dimensions.get('window').height;
 const width = Dimensions.get('window').width;
 const Article = ({
-  id,
-  title,
-  sectionName,
-  headline,
-  trailtext,
-  imageUrl,
-  date,
-  body
+  articleData
 }) => {
-  
+  const parsedBody = parseArticleBody(articleData.body)
   return (
-    <View style={ styles.container }>
+    <ScrollView style={ styles.container }>
       <Text style={ styles.section }>
-        { sectionName + '\n\n'}
+        { articleData.sectionName + '\n\n'}
       </Text>
       <Text style={ styles.headline }>
-        { headline + '\n\n'}
+        { articleData.headline + '\n\n'}
       </Text>
       <Text style={ styles.trailtext }>
-        { trailtext + '\n\n'}
+        { articleData.trailText + '\n\n'}
       </Text>
-      <View style={ styles.mediaObject }>
-        <Image source={ imageUrl } style={ styles.image }/>
+      <View style={ styles.author }>
+        <Text style={ styles.bylineStyled }>
+          { articleData.byline + '\n\n'}
+        </Text>
+        <Text style={ styles.date }>
+          { new Date(articleData.date).toLocaleString('en-GB',{year: 'numeric',month: '2-digit',day: '2-digit', hour: '2-digit', minute:'2-digit'}) + '\n\n'}
+        </Text>
       </View>
-      <Text style={ styles.date }>
-        {'date: ' + date + '\n\n'}
-      </Text>
+
+      <View style={ styles.mediaObject }>
+        <Image source={ articleData.imageUrl } style={ styles.image }/>
+      </View>
+
       <Text style={ styles.body }>
-        {'Body: ' + body+ '\n\n'}
+        { parseArticleBody(articleData.body)}
       </Text>
-    </View>
+    </ScrollView>
   );
 };
 
@@ -78,12 +82,26 @@ const styles = StyleSheet.create({
    mediaObject: {
      marginLeft: -9,
    },
+   author: {
+     flex: 1,
+     flexDirection: 'column',
+     marginTop: -15
+   },
+   bylineStyled: {
+     color: colors.blue
+   },
    image: {
      width: width,
      height: 200,
      marginTop: -17,
      padding: -9
    },
-   body: {},
+   body: {
+     marginTop: 9,
+     textAlign: 'justify'
+   },
+   date: {
+     marginTop: -32,
+   },
 
 });

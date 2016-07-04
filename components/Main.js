@@ -35,13 +35,13 @@ export default class Main extends Component {
       const placeholder = require('../assets/default.png');
 
       const imageUrl = article.fields.thumbnail ?  {uri: article.fields.thumbnail} : placeholder;
-console.log(imageUrl);
       const ARTICLE_STATE = {
          id: article.id,
          title: 'The GArdian',
          sectionName: article.sectionName,
          headline: article.fields.headline,
          trailText: article.fields.trailText,
+         byline: article.fields.byline,
          imageUrl: imageUrl,
          date: article.fields.lastModified,
          body: article.fields.body,
