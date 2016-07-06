@@ -42,7 +42,6 @@ export default class Main extends Component {
    }
    componentDidMount() {
       this.makeQuery('');
-      console.log(this);
    }
    renderRow = (article, sId, rId) => {
       const { navigator } = this.props;
