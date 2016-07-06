@@ -1,26 +1,31 @@
 /**
- * Sample React Native App
+ * Root compnent
  * https://github.com/facebook/react-native
  * @flow
  */
 
+//React components
 import React, { Component } from 'react';
-import {
-  Navigator,
-} from 'react-native';
+
+import { Navigator } from 'react-native';
+
+//Application components
 import Main from './Main';
 import Article from './Article';
 import NavigationBar from './NavigationBar';
 
+/**
+* Root class
+*/
 export default class Root extends Component {
 
-   renderScene(route, navigator)
-   {
+   renderScene(route, navigator) {
      if (route.id === 'MAIN')
      {
        return <Main navigator={ navigator }/>;
      }
-     return <Article articleData  = {route}/>;
+
+     return <Article articleData={ route }/>;
    };
 
    render() {
