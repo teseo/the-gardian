@@ -1,23 +1,21 @@
 /**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
+ * List Article Component
  */
-
- import React, { Component } from 'react';
- import {
+//React components
+import React, { Component } from 'react';
+import {
    StyleSheet,
    Text,
    TouchableOpacity,
    Image,
    View
- } from 'react-native';
+} from 'react-native';
 
+//utis and assets
 import colors from '../utils/colors';
-
 const placeholder = require('../assets/default.png');
 
-const ListArticle = ({ text, image, navState, navigator }) => {
+export default  ListArticle = ({ text, image, navState, navigator }) => {
 
    return (
       <TouchableOpacity
@@ -26,13 +24,11 @@ const ListArticle = ({ text, image, navState, navigator }) => {
 
          <View style={ styles.mediaObject }>
             <Image source={ image } style={ styles.image }/>
-            <Text style={ styles.text }> { text }</Text>
+            <Text style={ styles.text }>{ text }</Text>
          </View>
       </TouchableOpacity>
    );
 };
-
-export default ListArticle;
 
 const styles = StyleSheet.create({
    mediaObject: {

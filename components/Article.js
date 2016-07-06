@@ -1,9 +1,8 @@
 /**
  * Article Component
- * https://github.com/facebook/react-native
- * @flow
  */
 
+//React components
 import React, { Component } from 'react';
 import {
   View,
@@ -13,45 +12,39 @@ import {
   Text,
 } from 'react-native';
 
+//utils
 import colors from '../utils/colors';
 import Dimensions from 'Dimensions';
+const width   = Dimensions.get('window').width;
 
-const height = Dimensions.get('window').height;
-const width = Dimensions.get('window').width;
-
-const Article = ({
-  articleData
-}) => {
+/**
+* Article component class
+*/
+export default Article = ({ articleData }) => {
   return (
     <ScrollView style={ styles.container }>
-      <Text style={ styles.section }>
-        { articleData.sectionName }
-      </Text>
-      <Text style={ styles.headline }>
-        { articleData.headline }
-      </Text>
-      <Text style={ styles.trailtext }>
-        { articleData.trailText }
-      </Text>
+      <Text style={ styles.section }>{ articleData.sectionName }</Text>
+
+      <Text style={ styles.headline }>{ articleData.headline }</Text>
+
+      <Text style={ styles.trailtext }>{ articleData.trailText }</Text>
+
       <View style={ styles.author }>
         <Text style={ styles.bylineStyled }>
           { articleData.byline + '\n\n'}
         </Text>
-        <Text style={ styles.date }>
-          { articleData.date }
-        </Text>
+
+        <Text style={ styles.date }>{ articleData.date }</Text>
       </View>
+
       <View style={ styles.mediaObject }>
         <Image source={ articleData.imageUrl } style={ styles.image }/>
       </View>
-      <Text style={ styles.body }>
-        { articleData.body}
-      </Text>
+
+      <Text style={ styles.body }>{ articleData.body }</Text>
     </ScrollView>
   );
 };
-
-export default Article;
 
 const styles = StyleSheet.create({
    container: {

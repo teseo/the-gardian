@@ -7,6 +7,8 @@ export default function parseArticleHTMLText(body){
   parsedBody = parsedBody.replace(/<aside (?:.)*?>(.)+<\/aside>/gm, "");
   //remove rest of tags
   parsedBody = parsedBody.replace(/<(?:.)*?>/gm, "");
+  //remove rest of tags
+  parsedBody = parsedBody.replace(/&nbsp;/g, " ");
   //remove repeated spaces
   parsedBody = parsedBody.replace(/(\ )+/g, ' ');
 
