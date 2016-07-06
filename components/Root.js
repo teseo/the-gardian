@@ -1,7 +1,5 @@
 /**
  * Root compnent
- * https://github.com/facebook/react-native
- * @flow
  */
 
 //React components
