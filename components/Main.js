@@ -35,6 +35,7 @@ export default class Main extends Component {
       this.state = {
          articles: dataSource,
          loaderImage:false,
+         dataSetEmpty: false,
          offset: 1
       }
 
@@ -74,9 +75,15 @@ export default class Main extends Component {
       loaderImage:!this.state.loaderImage
       });
    }
+   toggleEmptyResult ( value ) {
+      this.setState({
+      dataSetEmpty: value
+      });
+   }
    render() {
 
       const { articles }   = this.state;
+
       const loaderImage    = require('../assets/loading.gif');
       const loadMore       = require('../assets/plus-button.gif');
 
@@ -91,11 +98,13 @@ export default class Main extends Component {
                   style={ styles.loaderImage }/>
                )}
 
-
-            <ListView dataSource={ articles }
-               style={ styles.listItem }
-               renderRow={ this.renderRow } ref="listView"/>
-
+               {renderIf(this.state.dataSetEmpty)(
+                  <Text style={ styles.emptyResult }> Empty Result </Text>
+               )}
+               <ListView dataSource={ articles }
+                  style={ styles.listItem }
+                  enableEmptySections={true}
+                  renderRow={ this.renderRow } ref="listView"/>
          </View>
       );
    }
@@ -111,6 +120,9 @@ export default class Main extends Component {
              });
          }).then(() => {
             this.toggleImageLoader();
+            var emptyValue = this.state.articles._cachedRowCount == 0
+            ? true : false;
+            this.toggleEmptyResult(emptyValue);
          })
          .catch((error) => {
             throw error;
@@ -150,4 +162,7 @@ export default class Main extends Component {
      width:15,
      height:15
    },
+   emptyResult: {
+      marginTop: 10
+   }
  });

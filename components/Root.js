@@ -20,7 +20,6 @@ export default class Root extends Component {
      {
        return <Main navigator={ navigator }/>;
      }
-console.log(route);
      return <Article articleData  = {route}/>;
    };
 
