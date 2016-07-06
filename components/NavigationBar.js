@@ -1,9 +1,8 @@
 /**
  * Navigator Component
- * https://github.com/facebook/react-native
- * @flow
  */
 
+//React components
 import React, { Component } from 'react';
 import {
   StyleSheet,
@@ -12,7 +11,11 @@ import {
   Text,
   TouchableOpacity
 } from 'react-native';
+
+//utils
 import colors from '../utils/colors';
+//Navigation Bar route mapper. The one in charge of navigate from articles
+//to search result page
 const NavigationBarRouteMapper = {
 
   LeftButton: (route, navigator) => {
@@ -65,7 +68,7 @@ const styles = StyleSheet.create({
     marginVertical: 9,
   }
 });
-
+// Navigation compoment
 export default (
     <Navigator.NavigationBar
       style={ styles.navBar }

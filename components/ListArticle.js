@@ -15,6 +15,9 @@ import {
 import colors from '../utils/colors';
 const placeholder = require('../assets/default.png');
 
+/**
+* List Article component class
+*/
 export default  ListArticle = ({ text, image, navState, navigator }) => {
 
    return (
