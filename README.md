@@ -1,5 +1,5 @@
 # The-GArdian
-React Native demo app powered by The Gardian API
+React Native demo app powered by The Guardian API
 
 ###note
 This repo won't work unless you get an access key to The Guardian API. 
